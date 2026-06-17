@@ -177,10 +177,26 @@ WHERE
   AND timestamp > TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 HOUR)
 GROUP BY 1;
 ```
+<img src="https://github.com/barbaria888/LogOps-Magic-on-GKE/blob/main/images/No-of-times-checkout-visited.png">
+
+```sql
+-- Product Page Visit Counter
+-- Counts the total occurrences of visits to a specific product (product ID: L9ECAV7KIM)
+-- in the last 1 hour using pattern matching on the text payload.
+
+SELECT
+  COUNT(*) AS total_product_visits
+FROM
+  -- Replace with your actual project-scoped BigQuery/Log Analytics table name:
+  `qwiklabs-gcp-03-67635a27c244.global.day2ops-log._AllLogs`
+WHERE
+  text_payload LIKE "GET %/product/L9ECAV7KIM %"
+  AND timestamp > TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 HOUR);
+```
 <img src="https://github.com/barbaria888/LogOps-Magic-on-GKE/blob/main/images/Product-page-visits-Charts.png">
 
 
-<img src="https://github.com/barbaria888/LogOps-Magic-on-GKE/blob/main/images/No-of-times-checkout-visited.png">
+
 
 ---
 
