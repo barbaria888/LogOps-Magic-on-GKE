@@ -1,9 +1,10 @@
 # ☸️ GKE Day-2 Ops: Cloud Logging & Log Analytics Engine
 
-[![GCP](https://img.shields.io/badge/Google%20Cloud-Platform-blue?logo=google-cloud&logoColor=white)](https://cloud.google.com/)
-[![Kubernetes](https://img.shields.io/badge/Kubernetes-GKE-326ce5?logo=kubernetes&logoColor=white)](https://kubernetes.io/)
-[![BigQuery](https://img.shields.io/badge/Google%20BigQuery-SQL-orange?logo=google-cloud&logoColor=white)](https://cloud.google.com/bigquery)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" height="60" alt="Google Cloud" /> &nbsp;
+<img src="https://raw.githubusercontent.com/barbaria888/barbaria888/main/gke-icon.png.png" height="70" alt="Google Kubernetes Engine"/>&nbsp;
+
+
+
 
 A production-grade demonstration showcasing **Day-2 Kubernetes Operations** on Google Kubernetes Engine (GKE) using **Cloud Logging**, custom **Log Sinks**, and **Log Analytics** with linked **BigQuery Datasets** for SQL-driven application insight.
 
