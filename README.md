@@ -1,10 +1,9 @@
-# ☸️ GKE Day-2 Ops: Cloud Logging & Log Analytics Engine
+#  GKE Day-2 Ops: Cloud Logging & Log Analytics Engine
 
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" height="60" alt="Google Cloud" /> &nbsp;
 <img src="https://raw.githubusercontent.com/barbaria888/barbaria888/main/gke-icon.png.png" height="70" alt="Google Kubernetes Engine"/>&nbsp;
-
-
-
+<img src="https://github.com/barbaria888/LogOps-Magic-on-GKE/blob/main/images/BigQuery.png" height="70">&nbsp;
+<img src="https://github.com/barbaria888/LogOps-Magic-on-GKE/blob/main/images/CloudLogging.png" height="70">
 
 A production-grade demonstration showcasing **Day-2 Kubernetes Operations** on Google Kubernetes Engine (GKE) using **Cloud Logging**, custom **Log Sinks**, and **Log Analytics** with linked **BigQuery Datasets** for SQL-driven application insight.
 
@@ -47,7 +46,7 @@ graph TD
 - **Google Cloud Logging**: Logs Router, custom Log Sinks, and upgraded Log Analytics buckets.
 - **BigQuery (Linked Datasets)**: Real-time SQL query compilation over raw logs.
 - **Online Boutique**: Multi-service microservices application (Go, Python, Java, C#, NodeJS) used to generate operational traffic patterns.
-
+    > <img src="https://github.com/barbaria888/LogOps-Magic-on-GKE/blob/main/images/application-ss.png">
 ---
 
 ## 📁 Repository Structure
@@ -81,6 +80,7 @@ gcloud container clusters get-credentials day2-ops --region europe-west4
 # Ensure nodes are provisioned and Ready
 kubectl get nodes
 ```
+<img src="https://github.com/barbaria888/LogOps-Magic-on-GKE/blob/main/images/clustter-day2-op.png">
 
 ### Task 2: Deploying Microservices Workloads
 
@@ -96,15 +96,15 @@ kubectl apply -f release/kubernetes-manifests.yaml
 
 # Poll pod deployment status until all replicas report "Running"
 kubectl get pods --watch
-```
 
-Confirm service readiness by acquiring the External Load Balancer IP and querying HTTP status:
-
-```bash
+# Confirm service readiness by acquiring the External Load Balancer IP and querying HTTP status:
 export EXTERNAL_IP=$(kubectl get service frontend-external -o jsonpath="{.status.loadBalancer.ingress[0].ip}")
 curl -o /dev/null -s -w "HTTP Response Code: %{http_code}\n" http://${EXTERNAL_IP}
-# Output: HTTP Response Code: 200
+
 ```
+<img src="https://github.com/barbaria888/LogOps-Magic-on-GKE/blob/main/images/microservices-getting-deployed-over-container.png">
+<img src="https://github.com/barbaria888/LogOps-Magic-on-GKE/blob/main/images/cluster-up-and-running.png">
+<img src="https://github.com/barbaria888/LogOps-Magic-on-GKE/blob/main/images/frontend-external-lb-ip.png">
 
 ---
 
@@ -123,6 +123,8 @@ To run advanced diagnostics, we optimize storage and filter noise by upgrading l
   ```text
   resource.type="k8s_container"
   ```
+<img src="https://github.com/barbaria888/LogOps-Magic-on-GKE/blob/main/images/create-another-global-log-buckt-with-bq.png">
+  
   This routes only target application logs, reducing indexing costs by filtering out GKE control plane noise.
 
 ---
@@ -155,6 +157,8 @@ FROM (
 )
 GROUP BY 1 ORDER BY 1;
 ```
+<img src="https://github.com/barbaria888/LogOps-Magic-on-GKE/blob/main/images/Avg-http-200.png">
+
 
 ### 🛒 Marketing & Business Funnel Analysis
 Identify traffic patterns for product page hits and track conversions (sessions completing checks):
@@ -173,6 +177,10 @@ WHERE
   AND timestamp > TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 HOUR)
 GROUP BY 1;
 ```
+<img src="https://github.com/barbaria888/LogOps-Magic-on-GKE/blob/main/images/Product-page-visits-Charts.png">
+
+
+<img src="https://github.com/barbaria888/LogOps-Magic-on-GKE/blob/main/images/No-of-times-checkout-visited.png">
 
 ---
 
@@ -183,4 +191,4 @@ GROUP BY 1;
 3. **Decoupled Monitoring**: Metrics parsed from JSON payloads reduce the overhead of application code modifications for telemetry collection.
 
 ---
-*Developed as part of Cloud Infrastructure Day-2 Operations portfolio verification.*
+
